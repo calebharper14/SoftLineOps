@@ -1,7 +1,7 @@
 <div align="center">
 
 # SoftlineOps  
-**Smarter Systems, Smoother Operations**
+### **Smarter Systems, Smoother Operations**
 
 [![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)](#tech-stack)
 [![Node.js](https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=white)](#tech-stack)
@@ -19,82 +19,37 @@
 ---
 
 ## Overview
+**SoftlineOps** is a comprehensive IT Management System designed to help organizations enhance their support processes and gain better visibility.
+It caters to two main roles:
+- **End Users:** who can report issues, check on their assigned devices, and keep track of updates.
+- **Administrators:** who oversee user and device management, monitor the health of the fleet, and create reports
 
-SoftlineOps is a comprehensive IT Management System built to make IT operations in organizations more efficient. It caters to two types of users — End Users and Administrators — each with features tailored to their needs. End Users can report issues and keep an eye on device health, while Administrators have the tools to manage users, monitor devices, and create insightful reports.
+---
 
 ## Key Features
 
 ### End User
-
-- **Issue Reporting**
-
-  - A straightforward web form to log issues (Hardware, Network, Software, Access).
-
-   - All entries are stored in PostgreSQL for admin review.
-
-   - Users get updates on the status of their reported issues.
-
-- **Device Health Reports**
-
-  - A Python agent gathers system metrics (CPU, RAM, Disk, Network).
-
-  - Data is securely transmitted via REST APIs.
-
-  - Users can see a real-time view of their device's health.
-
-- **Notifications & Updates**
-
-  - Alerts for updates on issues, solutions, or any unusual activity.
+- **Issue Reporting:** Log issues (Hardware / Network / Software / Access) via a simple web form.
+- **Device Health:** View real-time health (CPU, RAM, Disk, Network) collected by a lightweight Python agent.
+- **Notifications:** In-app updates on ticket status and unusual device activity.
 
 ### Administrator
+- **User & Device Management:** Add/edit/remove users and devices; assign devices to people.
+- **Issue Dashboard:** Filter, triage, and update ticket status; assign to IT staff.
+- **Monitoring:** Fleet-wide view, highlight devices with warnings/threshold breaches.
+- **Reporting & Analytics:** Weekly/monthly summaries; export **PDF/CSV**.
 
-- **User & Device Management**
-
-  - Add, edit, or remove users and devices as needed.
-
-  - Assign devices to specific users.
-
-  - Maintain a complete inventory of devices along with their history.
-
-- **Issue Tracking Dashboard**
-
-  - A centralized list of reported issues with filtering options.
-
-  - Update issue statuses and assign them to IT staff.
-
-- **System Monitoring Dashboard**
-
-  - A comprehensive overview of all devices on the network.
-
-  - Highlight devices that are showing warnings or errors.
-
-  - Generate compliance reports that can be exported.
-
-- **Reporting & Analytics**
-
-  - Weekly and monthly summaries (issues resolved, device performance, recurring problems).
-
-  - Exportable in PDF or CSV formats.
+---
 
 ## Interaction Flow
 
-### User Flow
+**User Flow:**  
+Login → Dashboard → (Report Issue | View Device Health | Track Tickets) → Receive Notifications.
 
-1. Log in to the user dashboard.
+**Admin Flow:**  
+Login → Admin Dashboard → (Manage Users/Devices | Review & Assign Tickets | Monitor Fleet) → Generate Reports.
 
-2. Report issues, view health reports, and track issues in-progress.
-
-3. Notifications guide users to updates.
-
-### Admin Flow
-
-1. Log in to the admin dashboard.
-
-2. Manage devices and users
-
-3. Monitor live health stats across the organization.
-
-4. Generate reports with one click.
+---
 
 ## Technical Stack
 

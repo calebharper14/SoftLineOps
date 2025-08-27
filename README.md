@@ -1,86 +1,85 @@
-SoftlineOps
+# SoftlineOps
+**Smarter Systems, Smoother Operations**
 
-Smarter Systems, Smoother Operations
-
-Overview
+## Overview
 
 SoftlineOps is a comprehensive IT Management System built to make IT operations in organizations more efficient. It caters to two types of users — End Users and Administrators — each with features tailored to their needs. End Users can report issues and keep an eye on device health, while Administrators have the tools to manage users, monitor devices, and create insightful reports.
 
-Key Features
+## Key Features
 
-End User
+### End User
 
-Issue Reporting
+- **Issue Reporting**
 
-- A straightforward web form to log issues (Hardware, Network, Software, Access).
+  - A straightforward web form to log issues (Hardware, Network, Software, Access).
 
-- All entries are stored in PostgreSQL for admin review.
+   - All entries are stored in PostgreSQL for admin review.
 
-- Users get updates on the status of their reported issues.
+   - Users get updates on the status of their reported issues.
 
-Device Health Reports
+- **Device Health Reports**
 
-- A Python agent gathers system metrics (CPU, RAM, Disk, Network).
+  - A Python agent gathers system metrics (CPU, RAM, Disk, Network).
 
-- Data is securely transmitted via REST APIs.
+  - Data is securely transmitted via REST APIs.
 
-- Users can see a real-time view of their device's health.
+  - Users can see a real-time view of their device's health.
 
-Notifications & Updates
+- **Notifications & Updates**
 
-- Alerts for updates on issues, solutions, or any unusual activity.
+  - Alerts for updates on issues, solutions, or any unusual activity.
 
-Administrator
+### Administrator
 
-User & Device Management
+- **User & Device Management**
 
-- Add, edit, or remove users and devices as needed.
+  - Add, edit, or remove users and devices as needed.
 
-- Assign devices to specific users.
+  - Assign devices to specific users.
 
-- Maintain a complete inventory of devices along with their history.
+  - Maintain a complete inventory of devices along with their history.
 
-Issue Tracking Dashboard
+- **Issue Tracking Dashboard**
 
-- A centralized list of reported issues with filtering options.
+  - A centralized list of reported issues with filtering options.
 
-- Update issue statuses and assign them to IT staff.
+  - Update issue statuses and assign them to IT staff.
 
-System Monitoring Dashboard
+- **System Monitoring Dashboard**
 
-- A comprehensive overview of all devices on the network.
+  - A comprehensive overview of all devices on the network.
 
-- Highlight devices that are showing warnings or errors.
+  - Highlight devices that are showing warnings or errors.
 
-- Generate compliance reports that can be exported.
+  - Generate compliance reports that can be exported.
 
-Reporting & Analytics
+- **Reporting & Analytics**
 
-- Weekly and monthly summaries (issues resolved, device performance, recurring problems).
+  - Weekly and monthly summaries (issues resolved, device performance, recurring problems).
 
-- Exportable in PDF or CSV formats.
+  - Exportable in PDF or CSV formats.
 
-Interaction Flow
+## Interaction Flow
 
-User Flow:
+### User Flow
 
-- Log in to the user dashboard.
+1. Log in to the user dashboard.
 
-- Report issues, view health reports, and track issues in-progress.
+2. Report issues, view health reports, and track issues in-progress.
 
-- Notifications guide users to updates.
+3. Notifications guide users to updates.
 
-Admin Flow:
+### Admin Flow
 
-- Log in to the admin dashboard.
+1. Log in to the admin dashboard.
 
-- Manage devices and users
+2. Manage devices and users
 
-- Monitor live health stats across the organization.
+3. Monitor live health stats across the organization.
 
-- Generate reports with one click.
+4. Generate reports with one click.
 
-Technical Stack
+## Technical Stack
 
 - Frontend: React (modern and responsive UI for admins and users.)
 

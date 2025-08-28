@@ -9,10 +9,10 @@
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=white)](#tech-stack)
 [![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)](#tech-stack)
 
-[![License](https://img.shields.io/github/license/calebharper14/SoftLineOps)](LICENSE)
-[![Issues](https://img.shields.io/github/issues/calebharper14/SoftLineOps)](../../issues)
-[![Pull Requests](https://img.shields.io/github/issues-pr/calebharper14/SoftLineOps)](../../pulls)
-[![Last Commit](https://img.shields.io/github/last-commit/calebharper14/SoftLineOps)](../../commits/main)
+[![License](https://img.shields.io/github/license/calebharper14/SoftLineOps)](https://github.com/calebharper14/SoftLineOps/blob/main/LICENSE)
+[![Issues](https://img.shields.io/github/issues/calebharper14/SoftLineOps)](https://github.com/calebharper14/SoftLineOps/issues)
+[![Pull Requests](https://img.shields.io/github/issues-pr/calebharper14/SoftLineOps)](https://github.com/calebharper14/SoftLineOps/pulls)
+[![Last Commit](https://img.shields.io/github/last-commit/calebharper14/SoftLineOps)](https://github.com/calebharper14/SoftLineOps/commits/main)
 
 </div>
 
@@ -41,6 +41,16 @@ It caters to two main roles:
 
 ---
 
+## Visuals
+> replace the image paths below with screenshots.
+> keep images between 1200px wide for clarity.
+
+| Login | User Dashboard | Admin Issues | Monitoring |
+|---|---|---|---|
+| ![Login](docs/screenshots/login.png) | ![User Dashboard](docs/screenshots/user-dashboard.png) | ![Admin Issues](docs/screenshots/admin-issues.png) | ![Monitoring](docs/screenshots/monitoring.png) |
+
+---
+
 ## Interaction Flow
 
 **User Flow:**  
@@ -51,13 +61,10 @@ Login → Admin Dashboard → (Manage Users/Devices | Review & Assign Tickets | 
 
 ---
 
-## Technical Stack
+## Tech Stack
+- **Frontend:** React (SPA)
+- **Backend:** Node.js + Express (REST API)
+- **Database:** PostgreSQL
+- **Agent:** Python (psutil + requests)
 
-- Frontend: React (modern and responsive UI for admins and users.)
-
-- Backend: Node.js and Express (for REST APIs, issue management, and notifications.)
-
-- Database: PostgreSQL (stores users, devices, issues, and metrics.)
-
-- Agent: Python (lightweight script installed on client devices to collect metrics.)
-
+---

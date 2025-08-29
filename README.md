@@ -9,35 +9,41 @@
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=white)](#tech-stack)
 [![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)](#tech-stack)
 
-[![License](https://img.shields.io/github/license/calebharper14/SoftLineOps)](https://github.com/calebharper14/SoftLineOps/blob/main/LICENSE)
-[![Issues](https://img.shields.io/github/issues/calebharper14/SoftLineOps)](https://github.com/calebharper14/SoftLineOps/issues)
-[![Pull Requests](https://img.shields.io/github/issues-pr/calebharper14/SoftLineOps)](https://github.com/calebharper14/SoftLineOps/pulls)
-[![Last Commit](https://img.shields.io/github/last-commit/calebharper14/SoftLineOps)](https://github.com/calebharper14/SoftLineOps/commits/main)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-SoftLineOps-181717?logo=github)](https://github.com/calebharper14/SoftLineOps)
+
 
 </div>
 
 ---
 
 ## Overview
-**SoftlineOps** is a comprehensive IT Management System designed to help organizations enhance their support processes and gain better visibility.
-It caters to two main roles:
-- **End Users:** who can report issues, check on their assigned devices, and keep track of updates.
-- **Administrators:** who oversee user and device management, monitor the health of the fleet, and create reports
+
+**SoftLineOps** is a comprehensive IT management system designed to help organizations enhance their support processes by simplifying reports, user and device management, and device health tracking. Providing support for two main roles: **End Users** and **Administrators**
 
 ---
 
-## Key Features
+## Features
 
-### End User
-- **Issue Reporting:** Log issues (Hardware / Network / Software / Access) via a simple web form.
+ ***End User***
+- **Issue Reporting** Log issues (Hardware / Network / Software / Access) via a simple web form.
 - **Device Health:** View real-time health (CPU, RAM, Disk, Network) collected by a lightweight Python agent.
 - **Notifications:** In-app updates on ticket status and unusual device activity.
 
-### Administrator
+***Administrator***
 - **User & Device Management:** Add/edit/remove users and devices; assign devices to people.
-- **Issue Dashboard:** Filter, triage, and update ticket status; assign to IT staff.
+- **Issue Dashboard:** Filter, prioritize, and update ticket status; assign to IT staff.
 - **Monitoring:** Fleet-wide view, highlight devices with warnings/threshold breaches.
 - **Reporting & Analytics:** Weekly/monthly summaries; export **PDF/CSV**.
+
+---
+
+## Interaction Flow
+
+***User Flow:*** 
+- Login → Dashboard → (Report Issue | View Device Health | Track Tickets) → Receive Notifications.
+
+***Admin Flow:***  
+- Login → Admin Dashboard → (Manage Users/Devices | Review & Assign Tickets | Monitor Fleet) → Generate Reports.
 
 ---
 
@@ -48,16 +54,6 @@ It caters to two main roles:
 | Login | User Dashboard | Admin Issues | Monitoring |
 |---|---|---|---|
 | ![Login](docs/screenshots/login.png) | ![User Dashboard](docs/screenshots/user-dashboard.png) | ![Admin Issues](docs/screenshots/admin-issues.png) | ![Monitoring](docs/screenshots/monitoring.png) |
-
----
-
-## Interaction Flow
-
-**User Flow:**  
-Login → Dashboard → (Report Issue | View Device Health | Track Tickets) → Receive Notifications.
-
-**Admin Flow:**  
-Login → Admin Dashboard → (Manage Users/Devices | Review & Assign Tickets | Monitor Fleet) → Generate Reports.
 
 ---
 

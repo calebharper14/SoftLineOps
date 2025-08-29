@@ -18,14 +18,15 @@
 
 ## Overview
 
-**SoftLineOps** is a comprehensive IT management system designed to help organizations enhance their support processes by simplifying reports, user and device management, and device health tracking. Providing support for two main roles: **End Users** and **Administrators**
+**SoftLineOps** is a comprehensive IT management system designed to help organizations enhance their support processes by simplifying reports, monitoring, and device health tracking.
+> *Providing support for two main roles: **End Users** and **Administrators***
 
 ---
 
 ## Features
 
  ***End User***
-- **Issue Reporting** Log issues (Hardware / Network / Software / Access) via a simple web form.
+- **Issue Reporting:** Log issues (Hardware / Network / Software / Access) via a simple web form.
 - **Device Health:** View real-time health (CPU, RAM, Disk, Network) collected by a lightweight Python agent.
 - **Notifications:** In-app updates on ticket status and unusual device activity.
 
@@ -34,6 +35,14 @@
 - **Issue Dashboard:** Filter, prioritize, and update ticket status; assign to IT staff.
 - **Monitoring:** Fleet-wide view, highlight devices with warnings/threshold breaches.
 - **Reporting & Analytics:** Weekly/monthly summaries; export **PDF/CSV**.
+
+---
+
+> ***Who Benefits:***
+> -	***Small & Medium Businesses:** access to efficient IT monitoring and proactive support.*
+> -	***IT Teams & Helpdesks:** automate diagnostics and reporting to improve trouble-shooting efficiency.*
+> -	***Schools & Colleges:** improve management of computer labs and student devices.*
+> -	***Freelance IT Consultants:** utilize a professional tool for managing support for multiple clients efficiently.*
 
 ---
 

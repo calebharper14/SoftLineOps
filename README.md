@@ -1,7 +1,9 @@
 <div align="center">
 
-# SoftlineOps  
+# SoftLineOps  
 ### **Smarter Systems, Smoother Operations**
+
+---
 
 [![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)](#tech-stack)
 [![Node.js](https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=white)](#tech-stack)
@@ -14,50 +16,68 @@
 [![Pull Requests](https://img.shields.io/github/issues-pr/calebharper14/SoftLineOps)](../../pulls)
 [![Last Commit](https://img.shields.io/github/last-commit/calebharper14/SoftLineOps)](../../commits/main)
 
+[![GitHub Repo](https://img.shields.io/badge/GitHub-SoftLineOps-181717?logo=github)](https://github.com/calebharper14/SoftLineOps)
+
 </div>
 
 ---
 
 ## Overview
-**SoftlineOps** is a comprehensive IT Management System designed to help organizations enhance their support processes and gain better visibility.
-It caters to two main roles:
-- **End Users:** who can report issues, check on their assigned devices, and keep track of updates.
-- **Administrators:** who oversee user and device management, monitor the health of the fleet, and create reports
+
+**SoftLineOps** is a comprehensive IT management system designed to help organizations enhance their support processes by simplifying reports, monitoring, and device health tracking.
+> *Providing support for two main roles: **End Users** and **Administrators***
 
 ---
 
-## Key Features
+## Features
 
-### End User
+ ***End User***
 - **Issue Reporting:** Log issues (Hardware / Network / Software / Access) via a simple web form.
 - **Device Health:** View real-time health (CPU, RAM, Disk, Network) collected by a lightweight Python agent.
 - **Notifications:** In-app updates on ticket status and unusual device activity.
 
-### Administrator
+***Administrator***
 - **User & Device Management:** Add/edit/remove users and devices; assign devices to people.
-- **Issue Dashboard:** Filter, triage, and update ticket status; assign to IT staff.
+- **Issue Dashboard:** Filter, prioritize, and update ticket status; assign to IT staff.
 - **Monitoring:** Fleet-wide view, highlight devices with warnings/threshold breaches.
 - **Reporting & Analytics:** Weekly/monthly summaries; export **PDF/CSV**.
 
 ---
 
-## Interaction Flow
-
-**User Flow:**  
-Login → Dashboard → (Report Issue | View Device Health | Track Tickets) → Receive Notifications.
-
-**Admin Flow:**  
-Login → Admin Dashboard → (Manage Users/Devices | Review & Assign Tickets | Monitor Fleet) → Generate Reports.
+> ***Who Benefits:***
+> -	***Small & Medium Businesses:** access to efficient IT monitoring and proactive support.*
+> -	***IT Teams & Helpdesks:** automate diagnostics and reporting to improve trouble-shooting efficiency.*
+> -	***Schools & Colleges:** improve management of computer labs and student devices.*
+> -	***Freelance IT Consultants:** utilize a professional tool for managing support for multiple clients efficiently.*
 
 ---
 
-## Technical Stack
+## Interaction Flow
 
-- Frontend: React (modern and responsive UI for admins and users.)
+***User Flow:*** 
+| Login → |  Dashboard → | Report Issue / View Device Health / Track Tickets → | Receive Notifications |
+|---|---|---|---|
 
-- Backend: Node.js and Express (for REST APIs, issue management, and notifications.)
+***Admin Flow:***  
+Login → | Admin Dashboard → | Manage Users+Devices / Review+Assign Tickets / Monitor Fleet → | Generate Reports |
+|---|---|---|---|
 
-- Database: PostgreSQL (stores users, devices, issues, and metrics.)
+---
 
-- Agent: Python (lightweight script installed on client devices to collect metrics.)
+## Visuals
+> replace the image paths below with screenshots.
+> keep images between 1200px wide for clarity.
 
+| Login | User Dashboard | Admin Issues | Monitoring |
+|---|---|---|---|
+| ![Login](docs/screenshots/login.png) | ![User Dashboard](docs/screenshots/user-dashboard.png) | ![Admin Issues](docs/screenshots/admin-issues.png) | ![Monitoring](docs/screenshots/monitoring.png) |
+
+---
+
+## Tech Stack
+- **Frontend:** React (SPA)
+- **Backend:** Node.js + Express (REST API)
+- **Database:** PostgreSQL
+- **Agent:** Python (psutil + requests)
+
+---

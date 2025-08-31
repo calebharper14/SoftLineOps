@@ -1,7 +1,9 @@
 <div align="center">
 
-# SoftlineOps  
+# SoftLineOps  
 ### **Smarter Systems, Smoother Operations**
+
+---
 
 [![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)](#tech-stack)
 [![Node.js](https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=white)](#tech-stack)
@@ -9,8 +11,12 @@
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=white)](#tech-stack)
 [![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)](#tech-stack)
 
-[![GitHub Repo](https://img.shields.io/badge/GitHub-SoftLineOps-181717?logo=github)](https://github.com/calebharper14/SoftLineOps)
+[![License](https://img.shields.io/github/license/calebharper14/SoftLineOps)](LICENSE)
+[![Issues](https://img.shields.io/github/issues/calebharper14/SoftLineOps)](../../issues)
+[![Pull Requests](https://img.shields.io/github/issues-pr/calebharper14/SoftLineOps)](../../pulls)
+[![Last Commit](https://img.shields.io/github/last-commit/calebharper14/SoftLineOps)](../../commits/main)
 
+[![GitHub Repo](https://img.shields.io/badge/GitHub-SoftLineOps-181717?logo=github)](https://github.com/calebharper14/SoftLineOps)
 
 </div>
 
@@ -49,10 +55,12 @@
 ## Interaction Flow
 
 ***User Flow:*** 
-- Login → Dashboard → (Report Issue | View Device Health | Track Tickets) → Receive Notifications.
+| Login → |  Dashboard → | Report Issue / View Device Health / Track Tickets → | Receive Notifications |
+|---|---|---|---|
 
 ***Admin Flow:***  
-- Login → Admin Dashboard → (Manage Users/Devices | Review & Assign Tickets | Monitor Fleet) → Generate Reports.
+Login → | Admin Dashboard → | Manage Users+Devices / Review+Assign Tickets / Monitor Fleet → | Generate Reports |
+|---|---|---|---|
 
 ---
 

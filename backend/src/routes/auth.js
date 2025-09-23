@@ -122,6 +122,7 @@ router.post('/login', [
     // Check for validation errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      console.log('Validation errors:', errors.array());
       return res.status(400).json({
         error: 'Validation failed',
         details: errors.array()
@@ -129,7 +130,8 @@ router.post('/login', [
     }
 
     const { login, password } = req.body;
-
+    console.log('Login attempt for:', login); // Debug log
+    
     // Find user by email or username
     const userResult = await pool.query(
       'SELECT * FROM users WHERE email = $1 OR username = $1',
@@ -137,28 +139,34 @@ router.post('/login', [
     );
 
     if (userResult.rows.length === 0) {
+      console.log('User not found:', login); // Debug log
       return res.status(401).json({
-        error: 'Invalid credentials',
-        message: 'Username/email or password is incorrect'
+        error: 'Authentication failed',
+        message: 'Invalid credentials'
       });
     }
 
     const user = userResult.rows[0];
+    console.log('User found:', user.username); // Debug log
 
     // Check if user is active
     if (!user.is_active) {
+      console.log('User account inactive:', user.username); // Debug log
       return res.status(401).json({
-        error: 'Account disabled',
-        message: 'Your account has been disabled. Please contact an administrator.'
+        error: 'Authentication failed',
+        message: 'Account is inactive'
       });
     }
 
-    // Verify password
-    const isPasswordValid = await bcrypt.compare(password, user.password_hash);
-    if (!isPasswordValid) {
+    // Compare passwords
+    const isMatch = await bcrypt.compare(password, user.password_hash);
+    console.log('Password match:', isMatch); // Debug log
+
+    if (!isMatch) {
+      console.log('Password mismatch for user:', user.username); // Debug log
       return res.status(401).json({
-        error: 'Invalid credentials',
-        message: 'Username/email or password is incorrect'
+        error: 'Authentication failed',
+        message: 'Invalid credentials'
       });
     }
 

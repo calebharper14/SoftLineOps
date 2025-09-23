@@ -10,9 +10,26 @@ const PORT = process.env.PORT || 5000;
 
 // Security middleware
 app.use(helmet());
+
+// Parse allowed origins from .env
+const allowedOrigins = (process.env.CORS_ORIGIN || 'http://localhost:3000,http://localhost:5173').split(',');
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
-  credentials: true
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      console.error(`CORS blocked origin: ${origin}`);
+      console.log(`Allowed origins: ${allowedOrigins.join(', ')}`);
+      return callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 // Rate limiting
@@ -21,6 +38,7 @@ const limiter = rateLimit({
   max: 100, // limit each IP to 100 requests per windowMs
   message: 'Too many requests from this IP, please try again later.'
 });
+
 app.use('/api/', limiter);
 
 // Body parsing middleware
@@ -32,12 +50,16 @@ const authRoutes = require('./src/routes/auth');
 const userRoutes = require('./src/routes/users');
 const deviceRoutes = require('./src/routes/devices');
 const issueRoutes = require('./src/routes/issues');
+const statsRouter = require('./src/routes/stats');
+const notificationsRouter = require('./src/routes/notifications');
 
-// API routes
+// API routes (all prefixed with /api)
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/devices', deviceRoutes);
 app.use('/api/issues', issueRoutes);
+app.use('/api/stats', statsRouter);
+app.use('/api/notifications', notificationsRouter);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
@@ -76,21 +98,21 @@ const startServer = async () => {
     if (dbConnected) {
       // Initialize database tables
       await initializeTables();
-      console.log('📋 Database initialization complete');
+      console.log('Database initialization complete');
     } else {
-      console.warn('⚠️  Database connection failed - server will start but database features may not work');
+      console.warn('Database connection failed - server will start but database features may not work');
     }
 
     // Start server
     app.listen(PORT, () => {
-      console.log(`🚀 SoftLineOps Backend API running on port ${PORT}`);
-      console.log(`📊 Health check: http://localhost:${PORT}/api/health`);
-      console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
-      console.log(`🔗 Frontend URL: ${process.env.FRONTEND_URL || 'http://localhost:5173'}`);
+      console.log(`SoftLineOps Backend API running on port ${PORT}`);
+      console.log(`Health check: http://localhost:${PORT}/api/health`);
+      console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+      console.log(`Frontend URL: ${process.env.FRONTEND_URL || 'http://localhost:5173'}`);
     });
 
   } catch (error) {
-    console.error('❌ Failed to start server:', error.message);
+    console.error('Failed to start server:', error.message);
     process.exit(1);
   }
 };

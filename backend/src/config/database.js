@@ -1,19 +1,18 @@
 const { Pool } = require('pg');
 require('dotenv').config();
 
-// Database configuration
+// Database configuration using .env variables
 const dbConfig = {
-  host: process.env.DB_HOST || 'localhost',
-  port: process.env.DB_PORT || 5432,
-  database: process.env.DB_NAME || 'softlineops',
-  user: process.env.DB_USER || 'postgres',
-  password: process.env.DB_PASSWORD || '',
-  max: 20, // Maximum number of clients in the pool
-  idleTimeoutMillis: 30000, // Close idle clients after 30 seconds
-  connectionTimeoutMillis: 2000, // Return an error after 2 seconds if connection could not be established
+  host: process.env.POSTGRES_HOST || 'localhost',
+  port: process.env.POSTGRES_PORT || 5432,
+  database: process.env.POSTGRES_DB || 'softlineops',
+  user: process.env.POSTGRES_USER || 'postgres',
+  password: process.env.POSTGRES_PASSWORD || '',
+  max: 20,
+  idleTimeoutMillis: 30000,
+  connectionTimeoutMillis: 2000,
 };
 
-// Create connection pool
 const pool = new Pool(dbConfig);
 
 // Test database connection
@@ -21,11 +20,8 @@ const testConnection = async () => {
   try {
     const client = await pool.connect();
     console.log('✅ Database connected successfully');
-    
-    // Test query
     const result = await client.query('SELECT NOW()');
     console.log('📅 Database time:', result.rows[0].now);
-    
     client.release();
     return true;
   } catch (error) {
@@ -37,7 +33,6 @@ const testConnection = async () => {
 // Initialize database tables
 const initializeTables = async () => {
   const client = await pool.connect();
-  
   try {
     // Users table
     await client.query(`
@@ -125,7 +120,6 @@ const initializeTables = async () => {
     `);
 
     console.log('✅ Database tables initialized successfully');
-    
   } catch (error) {
     console.error('❌ Error initializing database tables:', error.message);
     throw error;

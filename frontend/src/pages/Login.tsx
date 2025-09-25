@@ -1,142 +1,298 @@
-import { useState } from 'react'
-import { Monitor, Shield, Users, Sparkles, Zap } from 'lucide-react'
+import React, { useState, FormEvent } from "react";
+import { login } from "../api/auth";
+import logo from "../assets/logo/softlineops-logo.png";
 
 interface LoginProps {
-  onLogin: () => void
+  onLogin: (token: string) => void;
 }
 
-const Login = ({ onLogin }: LoginProps) => {
-  const [formData, setFormData] = useState({
-    username: '',
-    password: ''
-  })
-  const [isLoading, setIsLoading] = useState(false)
+const Login: React.FC<LoginProps> = ({ onLogin }) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [errorReportModalOpen, setErrorReportModalOpen] = useState(false);
+  const [errorReportData, setErrorReportData] = useState({
+    subject: "",
+    description: "",
+    severity: "low",
+    category: "general",
+  });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
-    
-    // Simulate API call
-    setTimeout(() => {
-      setIsLoading(false)
-      onLogin()
-    }, 1500)
-  }
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setError("");
+    try {
+      const data = await login(username, password);
+      onLogin(data.token);
+    } catch (err) {
+      setError("Invalid credentials");
+    }
+  };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
-  }
+  const handleErrorReport = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      // Here you would normally send the report to your API
+      console.log("Error report submitted:", errorReportData);
+
+      // Show success message or notification
+      alert(
+        "Thank you for your report. Our support team will review it shortly."
+      );
+
+      // Reset form and close modal
+      setErrorReportData({
+        subject: "",
+        description: "",
+        severity: "low",
+        category: "general",
+      });
+      setErrorReportModalOpen(false);
+    } catch (error) {
+      console.error("Error submitting report:", error);
+      alert("Failed to submit report. Please try again later.");
+    }
+  };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
-      <div className="card w-full max-w-lg fade-in">
-        {/* Header */}
-        <div className="text-center mb-8 bounce-in">
-          <div className="flex justify-center items-center mb-6">
-            <div className="relative">
-              <Monitor className="h-12 w-12 text-blue-600 mr-3" />
-              <Sparkles className="h-4 w-4 text-yellow-500 absolute -top-1 -right-1 animate-pulse" />
-            </div>
-            <div>
-              <h1 className="text-3xl font-bold text-gray-800 mb-1">SoftLineOps</h1>
-              <div className="h-1 w-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto"></div>
-            </div>
-          </div>
-          <p className="text-gray-600 text-lg font-medium">Smarter Systems, Smoother Operations</p>
-        </div>
-
-        {/* Features Preview */}
-        <div className="grid grid-cols-2 gap-6 mb-8">
-          <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 slide-in-left">
-            <div className="bg-blue-500 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3">
-              <Shield className="h-6 w-6 text-white" />
-            </div>
-            <p className="text-sm font-semibold text-gray-700">IT Support</p>
-            <p className="text-xs text-gray-500 mt-1">24/7 Assistance</p>
-          </div>
-          <div className="text-center p-4 bg-gradient-to-br from-green-50 to-green-100 rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 slide-in-right">
-            <div className="bg-green-500 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3">
-              <Users className="h-6 w-6 text-white" />
-            </div>
-            <p className="text-sm font-semibold text-gray-700">Device Health</p>
-            <p className="text-xs text-gray-500 mt-1">Real-time Monitoring</p>
-          </div>
-        </div>
-
-        {/* Login Form */}
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="form-group">
-            <label htmlFor="username">Username</label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              value={formData.username}
-              onChange={handleChange}
-              required
-              placeholder="Enter your username"
-              className="transition-all duration-300"
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-              placeholder="Enter your password"
-              className="transition-all duration-300"
-            />
-          </div>
-
-          <button 
-            type="submit" 
-            disabled={isLoading}
-            className="w-full relative overflow-hidden group"
-          >
-            <span className="flex items-center justify-center">
-              {isLoading ? (
-                <>
-                  <div className="loading-spinner mr-2"></div>
-                  Signing in...
-                </>
-              ) : (
-                <>
-                  <Zap className="h-4 w-4 mr-2 group-hover:animate-pulse" />
-                  Sign In
-                </>
-              )}
-            </span>
-          </button>
-        </form>
-
-        {/* Demo Credentials */}
-        <div className="mt-6 p-4 bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl border border-gray-200">
-          <div className="flex items-center justify-center mb-2">
-            <Sparkles className="h-4 w-4 text-yellow-500 mr-2" />
-            <p className="text-sm font-semibold text-gray-700">Demo Access</p>
-          </div>
-          <p className="text-xs text-gray-600 text-center">
-            Use any username and password to explore the platform
-          </p>
-        </div>
-
-        {/* Footer */}
-        <div className="text-center mt-8 pt-6 border-t border-gray-200">
-          <p className="text-xs text-gray-500">
-            © 2024 SoftLineOps. All rights reserved.
-          </p>
-        </div>
+    <div className="login-card">
+      <div style={{ textAlign: "center", marginBottom: "1.5rem" }}>
+        <img
+          src={logo}
+          alt="SoftLineOps Logo"
+          style={{
+            width: "280px",
+            marginBottom: "2.5rem",
+            borderRadius: "20px",
+            boxShadow:
+              "0 8px 16px rgba(0,0,0,0.2), 0 0 20px rgba(255,255,255,0.1)",
+          }}
+        />
+        <p
+          style={{
+            color: "#4b5563",
+            fontWeight: 500,
+            fontSize: "1.1rem",
+            marginBottom: "0.5rem",
+          }}
+        >
+          Smarter Systems, Smoother Operations
+        </p>
+        <br />
+        <h2
+          style={{
+            color: "#357ded",
+            fontWeight: 700,
+            marginBottom: "0.5rem",
+          }}
+        >
+          Sign In
+        </h2>
       </div>
-    </div>
-  )
-}
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Username"
+          className="input-field"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          className="input-field"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit" className="button-primary">
+          Sign In
+        </button>
+      </form>
+      {error && <p style={{ color: "red", marginTop: "1rem" }}>{error}</p>}
+      <footer className="dashboard-footer">
+        <div className="footer-content">
+          <div className="footer-logo">
+            <img
+              src={logo}
+              alt="SoftLineOps Logo"
+              className="logo-square footer-logo-icon"
+              style={{ height: "26px", width: "26px", borderRadius: "6px" }}
+              onError={(e) => {
+                console.warn("Footer logo failed to load");
+                e.currentTarget.style.display = "none";
+              }}
+            />
+            <span className="footer-brand">SoftLineOps</span>
+          </div>
+          <div className="footer-info">
+            <p>
+              &copy; {new Date().getFullYear()} SoftLineOps. All rights
+              reserved.
+            </p>
+            <p className="footer-tagline">
+              Smoother Systems, Smarter Operations
+            </p>
+          </div>
+          <div className="footer-links">
+            <a
+              href="#"
+              className="footer-link"
+              onClick={(e) => {
+                e.preventDefault();
+                setErrorReportModalOpen(true);
+              }}
+            >
+              Support
+            </a>
+          </div>
+        </div>
+      </footer>
 
-export default Login
+      {/* Error Reporting Modal */}
+      {errorReportModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal-container error-report-modal">
+            <div className="modal-header">
+              <div className="error-report-header">
+                <div className="error-report-logo">
+                  <img
+                    src={logo}
+                    alt="SoftLineOps Logo"
+                    className="error-report-logo-icon"
+                    style={{
+                      height: "30px",
+                      width: "30px",
+                      borderRadius: "6px",
+                    }}
+                  />
+                  <h3 className="error-report-brand">SoftLineOps</h3>
+                </div>
+                <p className="error-report-motto">
+                  Smoother Systems, Smarter Operations
+                </p>
+              </div>
+              <button
+                className="modal-close"
+                onClick={() => setErrorReportModalOpen(false)}
+              >
+                ×
+              </button>
+            </div>
+
+            <div className="modal-content">
+              <h2
+                style={{
+                  margin: "0 0 1.5rem 0",
+                  color: "#357ded",
+                }}
+              >
+                Report an Issue
+              </h2>
+              <form
+                onSubmit={handleErrorReport}
+                className="error-report-form"
+              >
+                <div className="form-group">
+                  <label htmlFor="report-subject">Subject*</label>
+                  <input
+                    id="report-subject"
+                    type="text"
+                    value={errorReportData.subject}
+                    onChange={(e) =>
+                      setErrorReportData({
+                        ...errorReportData,
+                        subject: e.target.value,
+                      })
+                    }
+                    placeholder="Brief summary of the issue"
+                    required
+                    className="form-input"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="report-category">Category*</label>
+                  <select
+                    id="report-category"
+                    value={errorReportData.category}
+                    onChange={(e) =>
+                      setErrorReportData({
+                        ...errorReportData,
+                        category: e.target.value,
+                      })
+                    }
+                    className="form-select"
+                    required
+                  >
+                    <option value="general">General</option>
+                    <option value="ui">User Interface</option>
+                    <option value="performance">Performance</option>
+                    <option value="functionality">Functionality</option>
+                    <option value="data">Data Issues</option>
+                    <option value="security">Security</option>
+                  </select>
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="report-severity">Severity*</label>
+                  <select
+                    id="report-severity"
+                    value={errorReportData.severity}
+                    onChange={(e) =>
+                      setErrorReportData({
+                        ...errorReportData,
+                        severity: e.target.value,
+                      })
+                    }
+                    className="form-select"
+                    required
+                  >
+                    <option value="low">Low - Minor inconvenience</option>
+                    <option value="medium">
+                      Medium - Partial functionality affected
+                    </option>
+                    <option value="high">High - Major feature unusable</option>
+                    <option value="critical">Critical - System unusable</option>
+                  </select>
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="report-description">Description*</label>
+                  <textarea
+                    id="report-description"
+                    value={errorReportData.description}
+                    onChange={(e) =>
+                      setErrorReportData({
+                        ...errorReportData,
+                        description: e.target.value,
+                      })
+                    }
+                    placeholder="Please provide details about the issue, steps to reproduce, and any error messages"
+                    required
+                    className="form-textarea"
+                    rows={5}
+                  />
+                </div>
+
+                <div className="form-actions">
+                  <button
+                    type="button"
+                    onClick={() => setErrorReportModalOpen(false)}
+                    className="button-secondary"
+                  >
+                    Cancel
+                  </button>
+                  <button type="submit" className="button-primary">
+                    Submit Report
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Login;

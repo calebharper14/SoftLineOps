@@ -1,36 +1,36 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
-import Login from './pages/Login'
-import Dashboard from './pages/Dashboard'
-import { useState } from 'react'
+import { useState } from 'react';
+import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [token, setToken] = useState<string | null>(null);
 
   return (
     <Router>
       <div className="App">
         <Routes>
-          <Route 
-            path="/login" 
+          <Route
+            path="/login"
             element={
-              isAuthenticated ? 
-              <Navigate to="/dashboard" replace /> : 
-              <Login onLogin={() => setIsAuthenticated(true)} />
-            } 
+              token
+                ? <Navigate to="/dashboard" replace />
+                : <Login onLogin={token => setToken(token)} />
+            }
           />
-          <Route 
-            path="/dashboard" 
+          <Route
+            path="/dashboard"
             element={
-              isAuthenticated ? 
-              <Dashboard onLogout={() => setIsAuthenticated(false)} /> : 
-              <Navigate to="/login" replace />
-            } 
+              token
+                ? <Dashboard token={token} onLogout={() => setToken(null)} />
+                : <Navigate to="/login" replace />
+            }
           />
           <Route path="/" element={<Navigate to="/login" replace />} />
         </Routes>
       </div>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;

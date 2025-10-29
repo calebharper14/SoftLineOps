@@ -268,36 +268,41 @@ body {
   margin: 0;
 }
 
-/* Stats row layout */
+/* Stats row layout with improved grid */
 .stats-row {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 1.25rem;
-  overflow-x: auto;
-  padding-bottom: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .stat-card {
-  padding: 1.25rem;
+  padding: 1.5rem;
   background: white;
   border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   text-align: center;
-  transition: transform 0.2s;
-  border: 1px solid #eee;
-  min-width: 160px;
-  flex: 1;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid #e8e8e8;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.75rem;
 }
 
 .stat-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(53, 125, 237, 0.1);
+  border-color: #357ded;
 }
 
 .stat-label {
   color: #666;
-  font-weight: 500;
-  margin-bottom: 0.75rem;
-  font-size: 0.9rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .stat-value {
@@ -306,39 +311,82 @@ body {
   color: #357ded;
 }
 
-/* Card grid layout */
+/* Card grid layout - Improved uniform sizing and spacing */
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .card {
-  padding: 1.5rem;
+  padding: 1.75rem;
   background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   transition: transform 0.2s, box-shadow 0.2s;
-  border: 1px solid #eee;
+  border: 1px solid #e8e8e8;
   height: 100%;
   display: flex;
   flex-direction: column;
-  min-height: 220px;
+  min-height: 280px;
+  max-height: 320px;
+  position: relative;
 }
 
 .card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(53, 125, 237, 0.12);
+  border-color: #357ded;
 }
 
-/* Card content organization */
+/* Card content organization with improved spacing */
 .card-header {
   margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #f5f5f5;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.card-header h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1c1f26;
+  margin: 0;
+  line-height: 1.4;
+  flex: 1;
 }
 
 .card-description {
   flex-grow: 1;
   margin-bottom: 1rem;
+  color: #4b5563;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  overflow-y: auto;
+  max-height: 120px;
+  padding-right: 0.5rem;
+}
+
+.card-description::-webkit-scrollbar {
+  width: 4px;
+}
+
+.card-description::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.card-description::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+  border-radius: 4px;
+}
+
+.card-description::-webkit-scrollbar-thumb:hover {
+  background: #a0a0a0;
 }
 
 /* Edit button with gear icon and hover effect */
@@ -645,12 +693,12 @@ body {
   will-change: auto;
 }
 
-/* Card meta information */
+/* Card meta information with better spacing */
 .card-meta {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
-  margin-bottom: 1rem;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
   font-size: 0.9rem;
   color: #666;
 }
@@ -658,63 +706,92 @@ body {
 .meta-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
+  padding: 0.35rem 0;
 }
 
-/* Card footer */
+.meta-item strong {
+  color: #1c1f26;
+  font-weight: 600;
+  min-width: 80px;
+}
+
+/* Card footer with improved spacing */
 .card-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: #666;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   margin-top: auto;
-  padding-top: 1rem;
-  border-top: 1px solid #eee;
+  padding-top: 1.25rem;
+  border-top: 1px solid #f0f0f0;
+  gap: 1rem;
 }
 
 .card-status {
-  font-weight: 500;
+  font-weight: 600;
+  color: #357ded;
+  padding: 0.25rem 0.75rem;
+  background: #f0f7ff;
+  border-radius: 6px;
 }
 
-/* Priority badges */
+/* Priority badges - Improved styling and positioning */
 .priority {
   font-weight: 600;
-  padding: 0.3em 0.8em;
-  border-radius: 20px;
-  font-size: 0.8em;
+  padding: 0.4em 1em;
+  border-radius: 6px;
+  font-size: 0.75em;
   color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  display: inline-block;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.priority:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 .priority-low {
-  background: #4caf50;
+  background: linear-gradient(135deg, #66bb6a 0%, #4caf50 100%);
 }
 
 .priority-medium {
-  background: #ff9800;
+  background: linear-gradient(135deg, #ffa726 0%, #ff9800 100%);
 }
 
 .priority-high {
-  background: #f44336;
+  background: linear-gradient(135deg, #ef5350 0%, #f44336 100%);
 }
 
 .priority-critical {
-  background: #9c27b0;
+  background: linear-gradient(135deg, #ab47bc 0%, #9c27b0 100%);
+  animation: pulse 2s ease-in-out infinite;
 }
 
-/* Priority badge container for better spacing */
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 2px 6px rgba(156, 39, 176, 0.3);
+  }
+  50% {
+    box-shadow: 0 2px 12px rgba(156, 39, 176, 0.6);
+  }
+}
+
+/* Priority badge container - Positioned at top-right of card */
 .priority-badge-container {
-  display: flex;
-  justify-content: center;
-  margin: 1rem 0;
-  padding: 0.5rem 0;
-  text-align: center;
-  border-top: 1px solid #f0f0f0;
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 1;
 }
 
 .priority-badge-container .priority {
-  text-transform: capitalize;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* Device status badges */
